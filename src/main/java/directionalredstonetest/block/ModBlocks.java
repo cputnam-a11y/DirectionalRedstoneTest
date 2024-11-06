@@ -1,5 +1,6 @@
 package directionalredstonetest.block;
 
+import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.item.BlockItem;
@@ -10,8 +11,16 @@ import net.minecraft.registry.Registry;
 import static directionalredstonetest.DirectionalRedstoneTest.id;
 
 public class ModBlocks {
-    public static final Block DIRECTIONAL_POWER_BLOCK = registerWithItem("directional_power_block", new DirectionalPowerBlock(Block.Settings.copy(Blocks.STONE)));
-
+    //@FORMATTER:OFF
+    public static final Block DIRECTIONAL_POWER_BLOCK = registerWithItem(
+            "directional_power_block",
+            new AmethystRotationPowerBlock(
+                    AbstractBlock
+                            .Settings
+                            .copy(Blocks.STONE)
+            )
+    );
+    //@FORMATTER:ON
     public static <T extends Block> T registerWithItem(String name, T block) {
         Registry.register(Registries.ITEM, id(name), new BlockItem(block, new Item.Settings()));
         return register(name, block);
@@ -20,5 +29,7 @@ public class ModBlocks {
     public static <T extends Block> T register(String name, T block) {
         return Registry.register(Registries.BLOCK, id(name), block);
     }
-    public static void init() {}
+
+    public static void init() {
+    }
 }

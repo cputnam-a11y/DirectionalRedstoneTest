@@ -18,20 +18,10 @@
 		"main": [
 			"directionalredstonetest.DirectionalRedstoneTest"
 		],
-		"client": [
-			"directionalredstonetest.DirectionalRedstoneTestClient"
-		],
 		"fabric-datagen": [
 			"directionalredstonetest.DirectionalRedstoneTestDataGenerator"
 		]
 	},
-	"mixins": [
-		"directionalredstonetest.mixins.json",
-		{
-			"config": "directionalredstonetest.client.mixins.json",
-			"environment": "client"
-		}
-	],
 	"depends": {
 		"fabricloader": ">=0.16.9",
 		"minecraft": "~1.21",

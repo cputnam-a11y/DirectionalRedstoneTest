@@ -29,7 +29,7 @@ public class ModModelProvider extends FabricModelProvider {
                                         ),
                                 model(
                                         y(0),
-                                        id("block/directional_power_block")
+                                        id("block/directional_power_block_on")
                                 )
                         )
                         .with(
@@ -40,7 +40,7 @@ public class ModModelProvider extends FabricModelProvider {
                                         ),
                                 model(
                                         y(90),
-                                        id("block/directional_power_block")
+                                        id("block/directional_power_block_on")
                                 )
                         )
                         .with(
@@ -51,7 +51,7 @@ public class ModModelProvider extends FabricModelProvider {
                                         ),
                                 model(
                                         y(180),
-                                        id("block/directional_power_block")
+                                        id("block/directional_power_block_on")
                                 )
                         )
                         .with(
@@ -62,7 +62,7 @@ public class ModModelProvider extends FabricModelProvider {
                                         ),
                                 model(
                                         y(270),
-                                        id("block/directional_power_block")
+                                        id("block/directional_power_block_on")
                                 )
                         )
         );

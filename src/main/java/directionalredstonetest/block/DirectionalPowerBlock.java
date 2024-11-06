@@ -1,17 +1,10 @@
 package directionalredstonetest.block;
 
-import directionalredstonetest.DirectionalRedstoneTest;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemPlacementContext;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.DirectionProperty;
-import net.minecraft.util.Hand;
-import net.minecraft.util.ItemActionResult;
-import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.BlockView;
@@ -56,23 +49,11 @@ public class DirectionalPowerBlock extends Block {
         return true;
     }
 
-    @Override
-    protected ItemActionResult onUseWithItem(ItemStack stack, BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
-        stack = stack.copy();
-        if (!stack.isOf(Items.AMETHYST_SHARD))
-            return ItemActionResult.FAIL;
-        if (world.isClient())
-            return ItemActionResult.SUCCESS;
-        stack.decrement(1);
-        player.setStackInHand(hand, stack);
-        BlockState newState = state.cycle(FACING);
-        world.setBlockState(pos, newState);
-        this.updateNeighbors(state, newState, world, pos);
-        world.updateListeners(pos, state, newState, 3);
-        return ItemActionResult.SUCCESS;
+    protected void updatePowerFromState(BlockState oldState, BlockState newState, BlockPos pos, World world) {
+        this.updateNeighbors(world, pos);
+        world.updateListeners(pos, oldState, newState, Block.NOTIFY_ALL);
     }
-
-    private void updateNeighbors(BlockState oldState, BlockState newState, World world, BlockPos pos) {
+    private void updateNeighbors(World world, BlockPos pos) {
         world.updateNeighborsAlways(pos, this);
         for (Direction dir : FACING.getValues())
             world.updateNeighborsAlways(pos.offset(dir), this);
